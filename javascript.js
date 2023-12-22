@@ -13,20 +13,32 @@ window.addEventListener('scroll', function() {
 });
 
 
-// Invalid email. Please enter again! 
+// Invalid email. Please enter again!  event.preventDefault();
 function validateEmail() {
-      
-  const emailInput = document.getElementById('emailInput').value;
+  event.preventDefault();
+  const subscriberName = document.getElementById('subscriber-name').value;
+  const emailInput = document.getElementById('email').value;
+  console.log(emailInput);
   const regex = /^[A-Z0-9_!#$%&'*+/=?`{|}~^.-]+@gmail\.com$/i; // sử dụng /i để bỏ qua việc phân biệt chữ hoa chữ thường
 
-  if (!regex.test(emailInput)) {
-    const errorMsg = document.getElementById('errorMessage');
+  const errorMsg = document.getElementById('errorMessage');
+  const successMsg = document.getElementById('successSubmitForm');
+
+  if (!regex.test(emailInput) || subscriberName.trim() == '') {  
     errorMsg.style.display = 'block';
+    setTimeout(function() {
+      errorMsg.style.display = 'none';
+    }, 1500); // Ẩn errorMsg sau 3 giây (3000ms)
     return false;
+  } else {
+    successMsg.style.display = 'block';
+    setTimeout(function() {
+      successMsg.style.display = 'none';
+    }, 1500); // Ẩn errorMsg sau 3 giây (3000ms)
+    document.getElementById('subscriber-name').value = '';
+    document.getElementById('email').value = '';
+    return true;
   }
-  const errorMsg = document.getElementById('okMessage');
-  errorMsg.style.display = 'block';
-  return true;
 }
 
 

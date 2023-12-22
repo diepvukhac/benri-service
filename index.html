@@ -151,22 +151,27 @@
                 <span>Subscribe to Newsletter</span>
               </h3>
 
-							<form id="newsletterForm" class="row g-3">
+							<form id="newsletterForm" class="row g-3" onsubmit="return validateEmail()">
+                <!-- User name -->
 								<div class="col-auto">
-									<input type="text" class="form-control" placeholder="Enter your name">
+									<input id="subscriber-name" type="text" class="form-control" placeholder="Enter your name">
 								</div>
+                <!-- Email -->
 								<div class="col-auto">
-									<input id="emailInput" type="email" class="form-control" placeholder="Enter your email">
+									<input id="email" type="email" class="form-control" placeholder="Enter your email">
 								</div>
 								<div class="col-auto">
 									<button type="submit" class="btn" id="email-sub-btn">
-										<div class="icon-container" onsubmit="return validateEmail()">
+										<div class="icon-container">
                       <i class="fa fa-paper-plane" aria-hidden="true"></i>
                     </div>
 									</button>
 								</div>
-                <p id="errorMessage" style="color: red; display: none;">Invalid email. Please enter again!.</p>
-                <p id="okMessage" style="color: rgb(13, 133, 230); display: none;">Valid email, Congrats!</p>
+                <div class="submitFormMessage">
+                  <p id="errorMessage" style="color: red; display: none; font-size: 12px;"><em>An error with email format or empty <i style="color: #0ca678;">""Enter your name!"</i> field, please check!</em></p>
+                  <p id="successSubmitForm" style="color: #099268; display: none; font-size: 12px;"><em>Submit successfully, Congrats!</em></p>
+                </div>
+                
                 
 							</form>
 					</div>
@@ -250,20 +255,7 @@
 </body>
 
 <script>
-  function validateEmail() {
-      event.preventDefault();
-      const emailInput = document.getElementById('emailInput').value;
-      const regex = /^[A-Z0-9_!#$%&'*+/=?`{|}~^.-]+@gmail\.com$/i; // sử dụng /i để bỏ qua việc phân biệt chữ hoa chữ thường
-    
-      if (!regex.test(emailInput)) {
-        const errorMsg = document.getElementById('msg-Error');
-        errorMsg.style.display = 'block';
-        return false;
-      }
-      const errorMsg = document.getElementById('msg-OK');
-      errorMsg.style.display = 'block';
-      return true;
-    }
+  
 </script>
 </html>
 
